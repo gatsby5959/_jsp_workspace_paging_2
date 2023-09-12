@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="javax.servlet.ServletException"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
+    <fullyQualifiedTypeName name="org.slf4j.Logger"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="org.apache.catalina.tribes.MembershipService"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactoryBuilder"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.io.Resources"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactory"/>
+    <fullyQualifiedTypeName name="orm.DatabaseBuilder"/>
+    <fullyQualifiedTypeName name="dao.MemberDAO"/>
+    <fullyQualifiedTypeName name="dao.MemberDAOImpl"/>
+    <fullyQualifiedTypeName name="service.MemberService"/>
+    <fullyQualifiedTypeName name="service.MemberServiceImpl"/>
+</qualifiedTypeNameHistroy>

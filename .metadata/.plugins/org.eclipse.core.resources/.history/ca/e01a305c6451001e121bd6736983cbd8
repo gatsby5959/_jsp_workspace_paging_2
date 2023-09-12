@@ -1,0 +1,7 @@
+package service;
+
+public interface MemberService {
+
+	int register(MemberVO mvo);
+	
+}
