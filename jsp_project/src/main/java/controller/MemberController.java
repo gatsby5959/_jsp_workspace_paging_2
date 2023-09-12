@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,6 +64,31 @@ public class MemberController extends HttpServlet {
 				
 			} catch (Exception e) {
 				e.printStackTrace();
+			}
+    		break;
+    	
+    	case "login":
+    		try {
+				//파라미터가 DB에 있는지 확인
+    			//id pw 일치하는 데이터 가져오기
+    			//session: 모든 jsp페이지에 공유되는 데이터
+    			//아이디가 없다면 메세지보내서 alert창
+    			String id = request.getParameter("id");
+    			String pwd = request.getParameter("pwd");
+    			MemberVO mvo = new MemberVO(id, pwd);
+    			
+    			MemberVO loginmvo = msv.login(mvo);
+    			log.info("login check 1 >>>" + loginmvo);
+    			//가져온 데이터를 세션에 저장
+    			//세션가져오기
+    			if(loginmov != null) {
+    				//연결된 세션이 있다면 기존의 세션 가져오기, 없으면 새로 생성
+    				HttpSession ses = request.getSession();
+    				ses.setAttribute("ses", loginmvo);// 뒤?에서 ses하면 내가 로그인 한 세션이라 생각하면 됨 (키,밸류)
+    				
+    			}
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
     		break;
     		

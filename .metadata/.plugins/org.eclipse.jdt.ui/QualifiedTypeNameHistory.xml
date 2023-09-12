@@ -14,4 +14,5 @@
     <fullyQualifiedTypeName name="dao.MemberDAOImpl"/>
     <fullyQualifiedTypeName name="service.MemberService"/>
     <fullyQualifiedTypeName name="service.MemberServiceImpl"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 </qualifiedTypeNameHistroy>
