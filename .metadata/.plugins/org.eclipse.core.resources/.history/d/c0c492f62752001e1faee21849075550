@@ -1,0 +1,18 @@
+package service;
+
+import org.slf4j.LoggerFactory;
+
+import domain.BoardVO;
+
+public class BoardServiceImpl implements BoardService {
+
+	//로그 객체 선언
+	private static final Logger log = LoggerFactory.getLogger(BoardServiceImpl.class);
+	
+	@Override
+	public int add(BoardVO bvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

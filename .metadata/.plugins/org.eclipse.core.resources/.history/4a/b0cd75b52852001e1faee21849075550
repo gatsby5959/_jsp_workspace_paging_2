@@ -1,0 +1,12 @@
+package dao;
+
+import domain.BoardVO;
+
+public class BoardDAO {
+
+	public int insert(BoardVO bvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

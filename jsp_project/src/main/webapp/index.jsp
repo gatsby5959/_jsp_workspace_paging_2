@@ -32,7 +32,7 @@
 
 <a href="/mem/join"><button>회원가입</button></a>
 <br>
-<a href="brd/pageList"><button>게시판 리스트</button></a>
+<a href="/brd/pageList"><button>게시판 리스트</button></a>
 
 <script type="text/javascript">
 	const msg_login= `<c:out value="${msg_login}"/>`;

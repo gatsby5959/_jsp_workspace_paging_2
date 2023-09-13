@@ -1,0 +1,12 @@
+package dao;
+
+import domain.BoardVO;
+import domain.PagingVO;
+
+public interface BoardDAO {
+
+	int insert(BoardVO bvo);
+
+	int getTotalCount(PagingVO pgvo);
+
+}

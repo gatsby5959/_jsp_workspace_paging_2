@@ -6,6 +6,7 @@
 
 	<typeAliases>
 		<typeAlias type="domain.MemberVO" alias="mvo"/>
+		<typeAlias type="domain.BoardVO" alias="bvo"/>
 	</typeAliases>
 	
  	<environments default="development">
@@ -21,7 +22,8 @@
  	</environments>
   
  	<mappers>
-	    <mapper resource="mapper/memberMapper.xml"></mapper>
+	    <mapper resource="mapper/memberMapper.xml"/>
+	    <mapper resource="mapper/boardMapper.xml"/>
  	</mappers>
 </configuration>
 

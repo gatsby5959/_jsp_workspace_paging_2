@@ -1,0 +1,14 @@
+package handler;
+
+import domain.PagingVO;
+
+public class PagingHandler {
+	//jsp화면 list화면 하단에 나오는 페이지네이션에 대한 핸들링클래스 1 2 3 4 5 6 이런거 어쩔때는 10 12 13
+	private int startPage;
+	private int endPage;
+	private int realEndPage;
+	private boolean prev, next;
+
+	private int totalCount;
+	private PagingVO pgvo;
+}

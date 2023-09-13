@@ -1,0 +1,20 @@
+package domain;
+
+//CREATE TABLE `board` (
+//		  `bno` int NOT NULL AUTO_INCREMENT,
+//		  `title` varchar(200) NOT NULL,
+//		  `writer` varchar(100) NOT NULL,
+//		  `content` text,
+//		  `regdate` datetime DEFAULT CURRENT_TIMESTAMP,
+//		  `moddate` datetime DEFAULT CURRENT_TIMESTAMP,
+//		  `readcount` int DEFAULT '0',
+//		  PRIMARY KEY (`bno`)
+//		) 
+public class BoardVO {
+	private int bno;
+	private String title;
+	private String writer;
+	private String content;
+	private String regdate;
+	moddate;
+}

@@ -1,0 +1,22 @@
+package dao;
+
+import org.slf4j.LoggerFactory;
+
+import domain.BoardVO;
+import service.BoardServiceImpl;
+
+public class BoardDAOImpl implements BoardDAO {
+
+	//로그 객체 선언
+	private static final Logger log = LoggerFactory.getLogger(BoardServiceImpl.class);
+	//DB연결
+	private SqlSession sql;
+	private final String NS = "BoardMapper."; // namespace.id
+	
+	@Override
+	public int insert(BoardVO bvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

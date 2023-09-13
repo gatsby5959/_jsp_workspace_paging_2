@@ -1,0 +1,15 @@
+package domain;
+
+public class PagingVO {
+
+	private int pageNo; //current화면에 출력되는 페이지네이션 번호
+	private int qty; // 한페이지당 보여줄 게시글 수
+	
+	//검색 멤버변수를 추가
+	private String type; //검색 대상
+	private String keyword; //검색어
+	
+	public PagingVO() { //페이지 네이션을 클릭하기 전 기본 리스트 출력
+		this(1,10);
+	}
+}
