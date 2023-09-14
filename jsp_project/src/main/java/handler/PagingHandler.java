@@ -23,9 +23,9 @@ public class PagingHandler {
 		// 2/10= 0.2 무조건올림(씰)   1*10= 10
 		this.endPage=(int)Math.ceil(pgvo.getPageNo()/(double)pgvo.getQty()) * pgvo.getQty();
 		this.startPage = this.endPage-9; //이러다 음수나오면??
-		if(this.startPage < 1) { //230914_0204 JGH임시추가
-			this.startPage = 1;
-		}
+//		if(this.startPage < 1) { //230914_0204 JGH임시추가
+//			this.startPage = 1;
+//		}
 		
 		//게시글 수 = 11개 / 1,2 페이지
 		//전체 게시글 수 / 한 화면의 게시글수

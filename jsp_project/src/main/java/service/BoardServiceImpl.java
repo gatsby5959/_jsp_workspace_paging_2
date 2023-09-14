@@ -40,4 +40,34 @@ public class BoardServiceImpl implements BoardService {
 		return bdao.getPageList(pgvo);
 	}
 
+	@Override
+	public BoardVO detailview(int bno) {
+		log.info("디테일의 서비스 임플");
+		return bdao.selectOne(bno); // 어쩃든 1개만 받아오면 one을함 one에 많이 들은건 다른 문제
+	}
+
+	@Override
+	public BoardVO getDetailForModi(int bno) {
+		log.info("getDetailForModi 서비스임플");
+		return  bdao.selectOne(bno); // 이래뵈도 전부 가져옴 1개 로우의 모든 정보를 다 가져옴 (위에 거랑 같음) 
+	}
+
+	@Override
+	public int modifyForEdit(BoardVO bvo) {
+		log.info("modifyForEdit 서비스임플");
+		return bdao.update(bvo);
+	}
+
+	@Override
+	public int remove(int bno) {
+		log.info("서비스임플 안의   remove(int bno)");
+		return bdao.delete(bno);
+	}
+
+	@Override
+	public int hitcount(int bno) {
+		log.info("hitcount(int bno)");
+		return bdao.hitcount(bno);
+	}
+
 }

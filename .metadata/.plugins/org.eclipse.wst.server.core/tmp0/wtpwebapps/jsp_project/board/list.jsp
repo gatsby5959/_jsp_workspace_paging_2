@@ -43,14 +43,18 @@
 			<th>TITLE</th>
 			<th>WRITER</th>
 			<th>REG_DATE</th>
+			<th>조회수</th>
 		</tr>
 		<!-- 컨트롤러의 request.setAttribute("list", list); -->
 		<c:forEach items="${list}" var="varbvo">
 			<tr>
-				<td><a href="/brd/detail?bno=${varbvo.bno}">${varbvo.bno}</a></td>
-				<td><a href="/brd/detail?bno=${varbvo.bno}">${varbvo.title}</a></td>
+<%-- 				<td><a href="/brd/detail?bno=${varbvo.bno}">${varbvo.bno}</a></td> --%>
+<%-- 				<td><a href="/brd/detail?bno=${varbvo.bno}">${varbvo.title}</a></td> --%>
+				<td><a href="/brd/count?bno=${varbvo.bno}">${varbvo.bno}</a></td>
+				<td><a href="/brd/count?bno=${varbvo.bno}">${varbvo.title}</a></td>
 				<td>${varbvo.writer}</td>
 				<td>${varbvo.regdate}</td>
+				<td>${varbvo.readcount}</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -59,7 +63,7 @@
 	<div>
 		<!-- prev(이전페이지) -->
 		<c:if test="${ph.prev}">
-			<a href="/brd/pageList?pageNo=${ph.startPage-1}&qty=$(ph.pgvo.qty)&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">◁|</a>
+			<a href="/brd/pageList?pageNo=${ph.startPage-1}&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">◁|</a>
 		</c:if>
 		
 		<c:forEach begin="${ph.startPage}" end ="${ph.endPage}" var="i">

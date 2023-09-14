@@ -17,7 +17,10 @@ public class BoardVO {
 	private String content;
 	private String regdate;
 	private String moddate;
+	private int readcount;
 	
+
+
 	//생성자
 	public BoardVO() {
 		
@@ -107,12 +110,21 @@ public class BoardVO {
 		this.moddate = moddate;
 	}
 
+	public int getReadcount() {
+		return readcount;
+	}
+
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardVO [bno=" + bno + ", title=" + title + ", writer=" + writer + ", content=" + content + ", regdate="
-				+ regdate + ", moddate=" + moddate + "]";
+				+ regdate + ", moddate=" + moddate + ", readcount=" + readcount + "]";
 	}
 	
+
 	
 	
 }

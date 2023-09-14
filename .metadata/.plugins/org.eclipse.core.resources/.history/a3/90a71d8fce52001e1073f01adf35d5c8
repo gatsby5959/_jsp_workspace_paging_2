@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>여기는 수정 페이지입니다. 수정하기 직전이죠 버튼 누르면 수정됨</h1>
+<form = "/brd/edit"><!-- 현재는 jsp페이지니까 /brd/를써서 버튼 클릭시 컨트롤러가 잡게 한다. edit가 잡힐것임 -->
+<table border = "1">
+ <tr>
+ 	<th>BNO</th>
+ 	<td><input type="text" name ="bno" value="${bvo.bno}" readonly="readonly"></td>
+ </tr>
+
+</table>
+</form>
+</body>
+</html>

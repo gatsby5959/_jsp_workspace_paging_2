@@ -47,11 +47,14 @@ public class BoardController extends HttpServlet {
 		//encoding 설정, contentType설정 요청경로파악
 		log.info("보드의 서비스 함수 시작11111111111111111111111111111111111111111111111111111111");
 		request.setCharacterEncoding("utf-8");
+		log.info("에러확인용1");
 		response.setCharacterEncoding("utf-8");
+		log.info("에러확인용2");
 		response.setContentType("text/html; charset=UTF-8");
-	
+		log.info("에러확인용3");
 		//jsp에서 오는 요청 주소
 		String uri = request.getRequestURI(); //  /brd/register
+		log.info("에러확인용4");
 		String path = uri.substring(uri.lastIndexOf("/")+1); 
 		log.info("path>>>>> "+path);
 		log.info("switch_case문 바로 위");
@@ -88,8 +91,8 @@ public class BoardController extends HttpServlet {
 		
 		case "list":
 			try {
-				log.info("단순리스트 옴");
-				log.info("특별한 작업 안 할 예정");
+				log.info("case \"list\": 에 도착 그러나 특별한 작업 안 할 예정");
+			
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -97,6 +100,8 @@ public class BoardController extends HttpServlet {
 			
 		case "pageList":
 			try {
+				
+				
 				//jsp에서 파라미터 받기
 				PagingVO pgvo = new PagingVO();
 				log.info("페이징전");
@@ -134,7 +139,15 @@ public class BoardController extends HttpServlet {
 			
 		case "detail" :
 			try {
+				log.info("디테일잘들어옴");
 				
+				int bno = Integer.parseInt(request.getParameter("bno"));
+				BoardVO bvo = bsv.detailview(bno); // select * from board; 실행
+				
+//				bsv.hitcount(bno); //jgh230914 하나 팜
+				
+				request.setAttribute("bvo", bvo); // 리퀘스트에 키 벨류 로 저장함 나중에 detail.jsp에서 쓰려고...
+				destPage = "/board/detail.jsp";
 			} catch (Exception e) {
 				log.info("detail 에러");
 				e.printStackTrace();
@@ -143,7 +156,11 @@ public class BoardController extends HttpServlet {
 			
 		case "modify" :
 			try {
-				
+				log.info("modify 진입");
+				int bno = Integer.parseInt(request.getParameter("bno"));
+				BoardVO bvo = bsv.getDetailForModi(bno);
+				request.setAttribute("bvo", bvo);
+				destPage="/board/modify.jsp";
 			} catch (Exception e) {
 				log.info("modify 에러");
 				e.printStackTrace();
@@ -152,6 +169,16 @@ public class BoardController extends HttpServlet {
 			
 		case "edit" :
 			try {
+				log.info("edit 진입");
+				int bno = Integer.parseInt(request.getParameter("bno")); //modify.jsp에서 누르는 순간 /brd/edit로 보냄
+				String title = request.getParameter("title");
+				String content = request.getParameter("content");
+				
+				BoardVO bvo = new BoardVO(bno,title,content);
+				log.info("bvo는 " + bvo);
+				isOk = bsv.modifyForEdit(bvo);
+				log.info((isOk>0)?"OK":"Fail");
+				destPage = "detail?bno="+bno;
 				
 			} catch (Exception e) {
 				log.info("edit 에러");
@@ -161,12 +188,30 @@ public class BoardController extends HttpServlet {
 		
 		case "remove" :
 			try {
-				
+				log.info("리무브 들어옴");
+				int bno = Integer.parseInt(request.getParameter("bno"));
+				int isOk = bsv.remove(bno);
+				log.info(   isOk>0? "OK" : "Fail"   );
+				destPage="pageList";
 			} catch (Exception e) {
 				log.info("remove 에러");
 				e.printStackTrace();
 			}
 			break;
+			
+		case "count" :
+			try {
+				log.info("count 케이스 들어옴");
+				int bno = Integer.parseInt(request.getParameter("bno"));
+
+				bsv.hitcount(bno);
+				
+				destPage="/brd/detail";
+			} catch (Exception e) {
+				log.info("count 에러");
+				e.printStackTrace();
+			}
+			break;	
 		
 		}//switch case문끝///////////
 		

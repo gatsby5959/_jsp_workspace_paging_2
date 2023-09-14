@@ -12,6 +12,14 @@ public interface BoardDAO {
 	int getTotalCount(PagingVO pgvo);
 
 	List<BoardVO> getPageList(PagingVO pgvo);
+
+	BoardVO selectOne(int bno);
+
+	int update(BoardVO bvo);
+
+	int delete(int bno);
+
+	int hitcount(int bno);
 	
 
 }

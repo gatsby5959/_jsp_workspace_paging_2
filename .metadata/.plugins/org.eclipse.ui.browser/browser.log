@@ -26,3 +26,23 @@
 9월 14, 2023 03:31:10.866 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
 9월 14, 2023 03:47:27.676 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
 9월 14, 2023 04:12:53.17 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+9월 14, 2023 16:04:41.426 NEW SESSION
+9월 14, 2023 16:04:41.426 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 14, 2023 16:05:08.787 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 14, 2023 16:16:05.496 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 14, 2023 16:20:11.927 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 14, 2023 16:21:00.746 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 14, 2023 16:21:19.522 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 14, 2023 16:21:43.302 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 14, 2023 16:41:40.741 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 14, 2023 19:10:06.584 [4940:10020:0914/191006.583:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+9월 14, 2023 19:12:38.885 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 14, 2023 19:17:42.577 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 14, 2023 19:31:13.853 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 14, 2023 19:35:23.674 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+9월 14, 2023 20:14:19.06 NEW SESSION
+9월 14, 2023 20:14:19.06 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 14, 2023 20:41:16.396 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 14, 2023 20:41:45.325 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.

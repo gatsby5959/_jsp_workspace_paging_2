@@ -46,5 +46,46 @@ public class BoardDAOImpl implements BoardDAO {
 		log.info("보드다오임플의 pgvo는 " + pgvo );
 		return sql.selectList(NS+"page", pgvo);
 	}
+
+	@Override
+	public BoardVO selectOne(int bno) { //디테일 페이지를 볼떄임
+		log.info("dao selectOne 진입");
+		// 디테일 페이지를 볼때 1번에 2가지 mapper를 실햄할 수도 있음
+//		sql.update(NS+"views", bno);  //
+//		sql.commit();
+		return sql.selectOne(NS+"one", bno);
+	}
+
+	@Override
+	public int update(BoardVO bvo) {
+		log.info("dao임플의 update()진입");
+		int isOk = sql.update(NS+"upd", bvo);
+		log.info("dao임플의 isOk " + isOk);
+		log.info("dao임플의 bvo "+ bvo);
+		if(isOk>0) {
+			sql.commit();
+		}
+		return isOk;
+	}
+
+	@Override
+	public int delete(int bno) {
+		log.info("dao임플의  delete(int bno)진입");
+		int isOk = sql.delete(NS+"del", bno);
+		if(isOk>0) {
+			sql.commit();
+		}
+		return isOk;
+	}
+
+	@Override
+	public int hitcount(int bno) {
+		log.info(" hitcount(int bno)");
+		int isOk = sql.update(NS+"hit", bno);
+		if(isOk>0) {
+			sql.commit();
+		}
+		return isOk;
+	}
  
 }

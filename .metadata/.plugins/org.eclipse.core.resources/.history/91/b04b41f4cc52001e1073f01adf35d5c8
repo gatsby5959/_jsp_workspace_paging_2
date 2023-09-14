@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>여긴 디테일 페이지입니다.</h1>
+<table board=1>
+ <tr>
+ 	<th>BNO</th>
+ 	<td>${bvo.bno}</td>
+ </tr>
+ <tr>
+ 	<th>TITLE</th>
+ 	<td>${bvo.title}</td>
+ </tr>
+ <tr>
+ 	<th>WRITER</th>
+ 	<td>${bvo.writer}</td>
+ </tr>
+ <tr>
+ 	<th>CONTENT</th>
+ 	<td>${bvo.content}</td>
+ </tr>
+ <tr>
+ 	<th>REGDATE</th>
+ 	<td>${bvo.regdate}</td>
+ </tr>
+ <tr>
+ 	<th>MODDATE</th>
+ 	<td>${bvo.moddate}</td>
+ </tr>
+</table>
+</body>
+</html>
