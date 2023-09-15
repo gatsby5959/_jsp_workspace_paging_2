@@ -1,0 +1,19 @@
+package domain;
+//create table comment(
+//cno int auto_increment,
+//bno int not null,
+//writer varchar(200) not null default "unknown",
+//content varchar(1000),
+//regdate datetime default now(),
+//primary key(cno)
+//);
+public class CommentVO {
+	private int cno;
+	private int bno;
+	private String writer;
+	private String content;
+	private String regdate;
+
+	
+	
+}

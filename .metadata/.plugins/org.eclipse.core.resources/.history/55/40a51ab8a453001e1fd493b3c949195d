@@ -1,0 +1,72 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</head>
+<body>
+	<h1>여긴 디테일 페이지입니다.</h1>
+	<table border=1 class="table table-dark">
+		<tr>
+			<th>BNO</th>
+			<td>${bvo.bno}</td>
+		</tr>
+		<tr>
+			<th>TITLE</th>
+			<td>${bvo.title}</td>
+		</tr>
+		<tr>
+			<th>WRITER</th>
+			<td>${bvo.writer}</td>
+		</tr>
+		<tr>
+			<th>CONTENT</th>
+			<td>${bvo.content}</td>
+		</tr>
+		<tr>
+			<th>REGDATE</th>
+			<td>${bvo.regdate}</td>
+		</tr>
+		<tr>
+			<th>MODDATE</th>
+			<td>${bvo.moddate}</td>
+		</tr>
+	</table>
+	<a href="/brd/modify?bno=${bvo.bno}"><button class="btn btn-outline-success">수정버튼</button></a>
+	<a href="/brd/remove?bno=${bvo.bno}"><button class="btn btn-outline-secondary">삭제버튼</button></a>
+	<a href="/brd/pageList"><button type="button">list</button> </a>
+	<br>
+	
+	<hr>
+	<!-- 댓글 등록라인 -->
+	<div>
+		Comment Line<br>
+		<input type="text" id="cmtWriter" value="${ses.id}" readonly="readonly"><br>
+		<input type="text" id="cmtText" placeholder="Add Comment"><br>
+		<button type="button" id ="cmtAddBtn">댓글 등록</button>
+	</div>
+	<br>
+	<!-- 댓글 표시라인 --> <!-- https://getbootstrap.com/docs/5.3/components/accordion/ --> <!-- https://getbootstrap.com/docs/5.3/getting-started/download/ -->
+	<div class="accordion" id="accordionExample">
+  	<!-- 댓글 아이템 1개 -->
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Accordion Item #1
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+  </div>
+	
+	
+</body>
+</html>

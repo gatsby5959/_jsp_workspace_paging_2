@@ -7,6 +7,8 @@
 	<typeAliases>
 		<typeAlias type="domain.MemberVO" alias="mvo"/>
 		<typeAlias type="domain.BoardVO" alias="bvo"/>
+		<typeAlias type="domain.PagingVO" alias="pvo"/>	 <!-- 사용은 안함 -->
+		<typeAlias type="domain.CommentVO" alias="cvo"/>
 	</typeAliases>
 	
  	<environments default="development">
@@ -24,6 +26,7 @@
  	<mappers>
 	    <mapper resource="mapper/memberMapper.xml"/>
 	    <mapper resource="mapper/boardMapper.xml"/>
+	    <mapper resource="mapper/commentMapper.xml"/>
  	</mappers>
 </configuration>
 

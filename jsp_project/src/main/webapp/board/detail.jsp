@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,39 +39,58 @@
 	</table>
 	<a href="/brd/modify?bno=${bvo.bno}"><button class="btn btn-outline-success">수정버튼</button></a>
 	<a href="/brd/remove?bno=${bvo.bno}"><button class="btn btn-outline-secondary">삭제버튼</button></a>
+	<a href="/brd/pageList"><button type="button">list</button> </a>
+	<br>
 	
-	
-	<!-- 일단주석처리 안씀 -->
-	<!-- <br> -->
-	<!-- <br> -->
-	<!-- <br> -->
-	<!-- <table border=1 class="table table-dark"> -->
-	<!-- <tr> -->
-	<!--  	<th>댓글 작성자</th> -->
-	<!--  	<td> 내용 </td> -->
-	<!--  	<td>댓글 작성일</td> -->
-	<!-- </tr> -->
-	<!-- <tr> -->
-	<!--  	<th>홍길동</th> -->
-	<!--  	<td> 아버지를 아버지라 부르지 못해서 짜증나요 못해먹겠다 </td> -->
-	<!--  	<td>1499년 5월 12일 세종15년</td> -->
-	<!-- </tr> -->
-	<!-- <tr> -->
-	<!--  	<th>이순신</th> -->
-	<!--  	<td> 내 죽음을 알리지 말라 </td> -->
-	<!--  	<td>1592년 5월 12일 선조12년</td> -->
-	<!-- </tr> -->
-	<!-- <tr> -->
-	<!--  	<th>장수왕</th> -->
-	<!--  	<td>평양이 좋아용</td> -->
-	<!--  	<td>552년 11월 19일</td> -->
-	<!-- </tr> -->
-	<!-- <tr> -->
-	<!--  	<th>계백</th> -->
-	<!--  	<td>전라도에 놀라오세요</td> -->
-	<!--  	<td>652년4월22일</td> -->
-	<!-- </tr> -->
-	<!-- </table> -->
-	
+	<hr>
+	<!-- 댓글 등록라인 -->
+	<div>
+		Comment Line<br>
+		<input type="text" id="cmtWriter" value="${ses.id}" readonly="readonly"><br>
+		<input type="text" id="cmtText" placeholder="Add Comment"><br>
+		<button type="button" id ="cmtAddBtn">댓글 등록</button>
+	</div>
+	<br>
+	<!-- 댓글 표시라인 --> <!-- https://getbootstrap.com/docs/5.3/components/accordion/ --> <!-- https://getbootstrap.com/docs/5.3/getting-started/download/ -->
+	<div class="accordion" id="accordionExample">
+  	<!-- 댓글 아이템 1개 -->
+  	<div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        cno, writer, regdate
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        content
+      </div>
+    </div>
+	</div>
+  </div>
+<script type="text/javascript">
+const bnoVal = `<c:out value="${bvo.bno}"/>`;
+</script>  
+<script src="/resources/board_detail.js"></script>	
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

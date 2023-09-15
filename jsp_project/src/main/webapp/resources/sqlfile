@@ -1,0 +1,19 @@
+
+
+
+뭐 2개 더있음
+아라서 트리테잇 해볼거
+
+
+
+
+
+<%-- 230915 --%>
+create table comment(
+cno int auto_increment,
+bno int not null,
+writer varchar(200) not null default "unknown",
+content varchar(1000),
+regdate datetime default now(),
+primary key(cno)
+);

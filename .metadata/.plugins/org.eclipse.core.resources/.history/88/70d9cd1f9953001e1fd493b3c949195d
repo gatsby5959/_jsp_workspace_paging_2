@@ -1,0 +1,5 @@
+package dao;
+
+public class CommentDAOImpl implements CommentDAO {
+
+}
