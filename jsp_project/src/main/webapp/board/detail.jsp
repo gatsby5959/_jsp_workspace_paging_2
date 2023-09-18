@@ -72,6 +72,11 @@ const bnoVal = `<c:out value="${bvo.bno}"/>`;
 </script>  
 <script src="/resources/board_detail.js"></script>	
 </body>
+
+<script type="text/javascript">
+printCommentList(bnoVal); <%--바로 댓글 뿌려줌 --%>
+</script>  
+
 </html>
 
 

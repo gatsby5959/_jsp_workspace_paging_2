@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +28,40 @@ public class CommentDAOImpl implements CommentDAO {
 		if(isOk>0){
 			sql.commit();
 		}
+		return isOk;
+	}
+
+	@Override
+	public List<CommentVO> getList(int bno) {
+		
+		return sql.selectList(NS+"list", bno);
+	}
+
+	@Override
+	public int update(CommentVO cvo) {
+		isOk = sql.update(NS+"up",cvo);
+		if(isOk>0) sql.commit();
+		return isOk;
+	}
+
+	@Override
+	public int delete(int cno) {
+		isOk = sql.delete(NS+"del",cno);
+		if(isOk>0) sql.commit();
+		return isOk;
+	}
+
+//	@Override
+//	public int delete2(int bno) {
+//		isOk = sql.delete(NS+"del2",bno);
+//		if(isOk>0) sql.commit();
+//		return isOk;
+//	}
+
+	@Override
+	public int deleteAll(int bno) {
+		isOk = sql.delete(NS+"delAll",bno);
+		if(isOk>0) sql.commit();
 		return isOk;
 	}
 }

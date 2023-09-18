@@ -7,5 +7,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into comment(bno, writer, content)
 		value(#{bno}, #{writer}, #{content})
 	</insert>
-
+	<select id="list" parameterType="int" resultType="cvo">
+		select * from comment where bno = #{bno}
+	</select>
+	<update id="up" parameterType="cvo">
+		update comment set content = #{content} where cno =#{cno}
+	</update>
+	<delete id="del" parameterType="int">
+		DELETE FROM comment WHERE cno = #{cno}
+	</delete>
+	<delete id="delAll" parameterType="int">
+	 DELETE FROM comment WHERE bno = #{bno}
+	</delete>
 </mapper>

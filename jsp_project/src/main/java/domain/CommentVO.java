@@ -16,7 +16,11 @@ public class CommentVO {
 	
 	public CommentVO() {};
 	
-	
+	//삭제
+	public CommentVO(int bno) {
+		super();
+		this.bno = bno;
+	}
 	
 	//등록
 	public CommentVO(int bno, String writer, String content) {

@@ -16,15 +16,19 @@
     <fullyQualifiedTypeName name="org.apache.catalina.Service"/>
     <fullyQualifiedTypeName name="service.BoardService"/>
     <fullyQualifiedTypeName name="domain.BoardVO"/>
-    <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
-    <fullyQualifiedTypeName name="org.slf4j.Logger"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
     <fullyQualifiedTypeName name="service.BoardServiceImpl"/>
     <fullyQualifiedTypeName name="dao.BoardDAOImpl"/>
-    <fullyQualifiedTypeName name="orm.DatabaseBuilder"/>
     <fullyQualifiedTypeName name="controller.BoardController"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="domain.PagingVO"/>
     <fullyQualifiedTypeName name="handler.PagingHandler"/>
+    <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
+    <fullyQualifiedTypeName name="controller.CommnetController"/>
+    <fullyQualifiedTypeName name="org.slf4j.Logger"/>
+    <fullyQualifiedTypeName name="orm.DatabaseBuilder"/>
+    <fullyQualifiedTypeName name="domain.CommentVO"/>
+    <fullyQualifiedTypeName name="org.json.simple.parser.JSONParser"/>
+    <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
 </qualifiedTypeNameHistroy>

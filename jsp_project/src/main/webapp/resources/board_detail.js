@@ -25,6 +25,7 @@ document.getElementById('cmtAddBtn').addEventListener('click',()=>{
     }
 })
 
+
 async function postCommentToServer(cmtData){ //비동기 async에이싱크
     try{
         //const url = "/cmt/post/"+bno;
@@ -55,14 +56,14 @@ function spreadCommentList(result){ //result 댓글 list     //일단 디비에�
         str += `<button class="accordion-button" type="button"`;
         str += `data-bs-toggle="collapse" data-bs-target="#collapse${i}"`;
         str += `aria-expanded="true" aria-controls="collapse${i}"`;
-        str += `${result[i].con}, ${result[i],writer}, ${result[i].reg_date}`;
+        str += `${result[i].cno}, ${result[i].writer}, ${result[i].reg_date}`;
         str += `</button> </h2>`;
         str += `<div id="collapse${i}" class="accordion-collapse collapse show"`;
         str += `data-bs-parent="#accordionExample">`;
         str += `<div class="accordion-body">`;
-        str += `<input type="text" class="form-control" id="cmtText" value=${result[i].content}" >`;/* 컨텐츠는 단순히 보여주는것이 아니라 입력도 받을수 있게 한다. */       /* https://getbootstrap.kr/docs/5.3/forms/form-control/  폼컨트롤 가져옴*/ 
-        str += `<button type="button" data-cno="${result[i].con}"  class="btn btn-warning cmtModBtn" >%</button>`; /* https://getbootstrap.kr/docs/5.3/components/buttons/ */
-        str += `<button type="button"  data-cno="${result[i].con}"  class="btn btn-danger cmtDelBtn"  >X</button>`;
+        str += `<input type="text" class="form-control" id="cmtText" value="${result[i].content}">`;/* 컨텐츠는 단순히 보여주는것이 아니라 입력도 받을수 있게 한다. */       /* https://getbootstrap.kr/docs/5.3/forms/form-control/  폼컨트롤 가져옴*/ 
+        str += `<button type="button" data-cno="${result[i].cno}" data-writer="${result[i].writer}"  class="btn btn-warning cmtModBtn">%</button>`; /* https://getbootstrap.kr/docs/5.3/components/buttons/ */
+        str += `<button type="button"  data-cno="${result[i].cno}"  class="btn btn-danger cmtDelBtn">X</button>`;
         str += `</div> </div> </div>`;
         div.innerHTML+= str; // 누적해서 담기
     }
@@ -81,11 +82,88 @@ function spreadCommentList(result){ //result 댓글 list     //일단 디비에�
     </div>
 */    
 
-//서버에 댓글 리스트를 달라고 요청
+//수정 삭제 버튼확인
+document.addEventListener('click',(e)=>{
+    console.log(e.target);
+    if(e.target.classList.contains('cmtModBtn')){
+        let cno = e.target.dataset.cno;
+        console.log(cno);
+
+		//수정 구현 (수정할 데이터를 객체로 생성 -> 컨트롤러에서 수정 요청)
+		let div = e.target.closest('div');	//타겟을 기준으로 가장 가까운 div 찾기
+		let cmtText = div.querySelector('#cmtText').value; //원래cmtText가 군데군데 많음)
+		let writer = e.target.dataset.writer;
+		
+		//비동기통신 함수 호출 -> 처리
+		updateCommentFromServer(cno, writer, cmtText).then(result=>{
+			if(result > 0){
+				alert('댓글 수정 성공~!!');
+				printCommentList(bnoVal);
+			}else{
+				alert('댓글 수정 실패~!!');
+			}
+		});
+		
+    }
+	if(e.target.classList.contains('cmtDelBtn')){
+		let cno = e.target.dataset.cno;
+        console.log(cno);
+	
+		//삭제 구현
+		let div = e.target.closest('div');	//타겟을 기준으로 가장 가까운 div 찾기
+		//let cmtText = div.querySelector('#cmtText').value; //원래cmtText가 군데군데 많음)
+		//let writer = e.target.dataset.writer;
+		
+		//비동기통신 함수 호출 -> 처리
+		removeCommentFromServer(cno).then(result=>{
+			if(result > 0){
+				alert('댓글 삭제 성공~!!');
+				printCommentList(bnoVal);
+			}else{
+				alert('댓글 삭제 실패~!!');
+			}
+		});
+	}
+})
+
+async function removeCommentFromServer(cno){
+	try{
+        const resp = await fetch('/cmt/remove/' +cno);  //   
+        const result = await resp.json(); //결과를 제이슨형태로 받게됨
+        return result;       
+	}
+	catch(error){
+		console.log(error);
+	}
+}
+
+
+async function updateCommentFromServer(cnoVal, cmtWriter, cmtText){
+	try{
+		const url = '/cmt/modify';
+		const config ={
+			method: 'post', 
+			headers:{
+				'Content-Type':'application/json; charset=uft-8'
+			},
+			body:JSON.stringify({cno:cnoVal, writer:cmtWriter, content:cmtText})
+		}	
+		const resp = await fetch(url,config);
+		const result = await resp.text();
+		return result;
+	}
+	catch(error){
+		console.log(error);
+	}
+}
+
+
+
+//서버에 댓글 리스트를 달라고 요청    //서버에 댓글 리스트를 달라고 요청
 async function getCommentListFromServer(bno){
     try {
         const resp = await fetch('/cmt/list/'+bno);  //    /cmt/list/151
-        const result = await resp.json();
+        const result = await resp.json(); //결과를 제이슨형태로 받게됨
         return result;        
     } catch (error) {
         console.log(error);
@@ -93,7 +171,7 @@ async function getCommentListFromServer(bno){
 }
 
 function printCommentList(bno){
-    getCommentListFromServer(bno).then(result=>{
+    getCommentListFromServer(bno).then(result=>{  //요청하자마자 결과도착하면...?
         console.log(result);
         if(result.length>0){
             spreadCommentList(result);

@@ -3,6 +3,7 @@ package controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
@@ -99,7 +101,107 @@ public class CommentController extends HttpServlet {
 				e.printStackTrace();
 			}
 			break;
-		}
+		
+		case "list":	//list
+			try {
+				int bno = Integer.parseInt(pathVar);
+				List<CommentVO> list = csv.getList(bno);
+				log.info(">>>> comment > List > " + list );
+				//json 현태로 변환 => 화면에 전송
+				JSONObject[] jsonObjArr = new JSONObject[list.size()];
+				
+				JSONArray jsonList = new JSONArray();
+				for(int i =0; i<list.size(); i++) {
+					jsonObjArr[i] = new JSONObject(); // key:value
+					jsonObjArr[i].put("cno", list.get(i).getCno());
+					jsonObjArr[i].put("bno", list.get(i).getBno());
+					jsonObjArr[i].put("writer", list.get(i).getWriter());
+					jsonObjArr[i].put("content", list.get(i).getContent());
+					jsonObjArr[i].put("regdate", list.get(i).getRegdate());
+					//제이슨을
+					//리스트에 넣어줌
+					
+					jsonList.add(jsonObjArr[i]);
+					
+//					log.info("kkkk "+ jsonObjArr[i] +" kkk");
+				}
+				String jsonData = jsonList.toJSONString(); //전송용
+				
+				//전송 객체에 싣고 화면으로 전송
+				PrintWriter out = response.getWriter();
+				out.print(jsonData);
+				//[
+				//{
+				// bno:"1"
+				// cno:"2"
+				//},
+				//{
+				// bno:"1"
+				// cno:"2"
+				//},
+				//{
+				// bno:"1"
+				// cno:"2"
+				//}
+				//]
+				//뿌리는건 스프레드가 함
+			} catch (Exception e) {
+				log.info(">>> Comment > list > error ");
+				e.printStackTrace();
+			}
+			break; //list
+			
+		case "modify":
+			try {
+				StringBuffer sb = new StringBuffer();
+				String line = "";
+				
+				BufferedReader  br = request.getReader();
+				while((line=br.readLine())!=null) {
+					sb.append(line);
+				}
+				log.info(">> sb > "+sb.toString());
+				
+				//Json 형태의 객체로 변환
+				JSONParser parser = new JSONParser();
+				JSONObject jsonobj = (JSONObject) parser.parse(sb.toString());
+				int cno = Integer.parseInt(jsonobj.get("cno").toString());
+				String writer = jsonobj.get("writer").toString();
+				String content = jsonobj.get("content").toString();
+				
+				CommentVO cvo = new CommentVO(cno, content);
+				isOk = csv.modify(cvo);
+				log.info(">>>>> modify >"+(isOk>0?"OK":"Fail"));
+				
+				PrintWriter out = response.getWriter();
+				out.print(isOk);
+				
+			} catch (Exception e) {
+				log.info(">>>> Comment > modify > error");
+				e.printStackTrace();
+			}
+			break; //modify 끝
+			
+			
+		case "remove" : 
+			try {
+				//만약 쿼리스트링으로 보내면
+				//int cno = Integer.parseInt(request.getParameter("cno"));
+				
+				int cno = Integer.parseInt(pathVar);
+				isOk = csv.remove(cno);
+				log.info("리무부의 isOk는 "+ isOk);
+				log.info(">>>>> remove >"+(isOk>0?"OK":"Fail"));
+				
+				PrintWriter out = response.getWriter();
+				out.print(isOk);
+				
+			} catch (Exception e) {
+				log.info(">>>> Comment > remove > error");
+				e.printStackTrace();
+			}
+			break; //remove끝
+		} //switch끝
 		
 	}
 

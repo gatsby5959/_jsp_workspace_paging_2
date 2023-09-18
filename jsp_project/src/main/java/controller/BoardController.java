@@ -19,6 +19,7 @@ import domain.PagingVO;
 import handler.PagingHandler;
 import service.BoardService;
 import service.BoardServiceImpl;
+import service.CommentService;
 
 
 @WebServlet("/brd/*")
@@ -30,6 +31,7 @@ public class BoardController extends HttpServlet {
 	private RequestDispatcher rdp;
 	//service interface
 	private BoardService bsv;
+	private CommentService csv;
 //	private Service bsv2; //이건 안쓸듯한데 일단 박아봄 서버에 있어용 카탈리나 안씀 
 	//destPage : 목적지 주소 저장변수
 	private String destPage;
@@ -47,14 +49,14 @@ public class BoardController extends HttpServlet {
 		//encoding 설정, contentType설정 요청경로파악
 		log.info("보드의 서비스 함수 시작11111111111111111111111111111111111111111111111111111111");
 		request.setCharacterEncoding("utf-8");
-		log.info("에러확인용1");
+//		log.info("에러확인용1");
 		response.setCharacterEncoding("utf-8");
-		log.info("에러확인용2");
+//		log.info("에러확인용2");
 		response.setContentType("text/html; charset=UTF-8");
-		log.info("에러확인용3");
+//		log.info("에러확인용3");
 		//jsp에서 오는 요청 주소
 		String uri = request.getRequestURI(); //  /brd/register
-		log.info("에러확인용4");
+//		log.info("에러확인용4");
 		String path = uri.substring(uri.lastIndexOf("/")+1); 
 		log.info("path>>>>> "+path);
 		log.info("switch_case문 바로 위");
@@ -189,7 +191,12 @@ public class BoardController extends HttpServlet {
 		case "remove" :
 			try {
 				log.info("리무브 들어옴");
+
 				int bno = Integer.parseInt(request.getParameter("bno"));
+//				
+//				int commentisOk = csv.remove2(bno);
+//				log.info(   commentisOk>0? "OK" : "Fail"   );
+				
 				int isOk = bsv.remove(bno);
 				log.info(   isOk>0? "OK" : "Fail"   );
 				destPage="pageList";
