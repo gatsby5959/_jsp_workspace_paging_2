@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>여기는 수정 페이지입니다. 수정하기 직전이죠 버튼 누르면 수정됨</h1>
-<form action = "/brd/edit"><!-- 현재는 jsp페이지니까 /brd/를써서 버튼 클릭시 컨트롤러가 잡게 한다. edit가 잡힐것임 -->
+<form action = "/brd/edit" method="post" enctype="multipart/form-data"><!-- 현재는 jsp페이지니까 /brd/를써서 버튼 클릭시 컨트롤러가 잡게 한다. edit가 잡힐것임 -->
 	<table border = "1">
 		 <tr>
 		 	<th>BNO</th>
@@ -25,6 +25,13 @@
 		 <tr>
 		 	<th>CONTENT</th>
 		 	<td><textarea row="4" cols="33" name="content">${bvo.content}</textarea></td>
+		 </tr>
+		 <tr>
+		 	<th>IMAGE_FILE</th>
+		 	<td>
+		 		<input type="hidden" name="image_file" value="${bvo.image_File}">
+		 		<input type="file" name="new_file" accept="image/png, image/jpg, image/gif">
+		 	</td>
 		 </tr>
 	</table>
 	<button type= submit> 수정</button>

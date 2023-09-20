@@ -1,0 +1,39 @@
+
+
+
+뭐 2개 더있음
+아라서 트리테잇 해볼거
+
+CREATE TABLE `board` (
+  `bno` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) NOT NULL,
+  `writer` varchar(100) NOT NULL,
+  `content` text,
+  `regdate` datetime DEFAULT CURRENT_TIMESTAMP,
+  `moddate` datetime DEFAULT CURRENT_TIMESTAMP,
+  `readcount` int DEFAULT '0',
+  PRIMARY KEY (`bno`)
+) ENGINE=InnoDB AUTO_INCREMENT=443 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+CREATE TABLE `comment` (
+  `cno` int NOT NULL AUTO_INCREMENT,
+  `bno` int NOT NULL,
+  `writer` varchar(200) NOT NULL DEFAULT 'unknown',
+  `content` varchar(1000) DEFAULT NULL,
+  `regdate` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`cno`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+<%-- 230915 --%>
+create table comment(
+cno int auto_increment,
+bno int not null,
+writer varchar(200) not null default "unknown",
+content varchar(1000),
+regdate datetime default now(),
+primary key(cno)
+);

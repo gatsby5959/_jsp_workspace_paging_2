@@ -8,8 +8,8 @@
  <!-- SQL구문별 id namespace.id -->
  <!-- parameterType=가져온객체  resultType=결과객체 -->
   <insert id="add" parameterType="bvo">
-  insert into board(title, writer, content) 
-  values(  #{title}, #{writer}, #{content} )
+  insert into board(title, writer, content, image_File) 
+  values(  #{title}, #{writer}, #{content}, #{image_File} )
   </insert>
  
  <select id="cnt" resultType="int">
@@ -30,7 +30,8 @@
  
 
  <update id="upd" parameterType="bvo"> 
- update board set title = #{title}, content = #{content}, moddate= now()
+ update board set title = #{title}, content = #{content}, moddate= now() 
+                , image_File = #{image_File}
  where bno = #{bno}
  </update>
  

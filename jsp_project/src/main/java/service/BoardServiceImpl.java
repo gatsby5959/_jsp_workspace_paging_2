@@ -62,7 +62,7 @@ public class BoardServiceImpl implements BoardService {
 	public int remove(int bno) {
 		log.info("서비스임플 안의   remove(int bno)");
 		CommentServiceImpl csv = new CommentServiceImpl(); //걍 생성~
-		csv.deleteAll(bno); //댓글 미리 지우기 추가 csv임... 코맨트 관련 서비스 쪾임
+		csv.deleteAll(bno); //댓글 미리 지우기 추가 csv임... 코맨트 관련 서비스 쪽임
 		return bdao.delete(bno); // 이건 bdao임
 	}
 

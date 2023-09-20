@@ -18,6 +18,7 @@ public class BoardVO {
 	private String regdate;
 	private String moddate;
 	private int readcount;
+	private String image_File; //230919이미지 추가
 	
 
 
@@ -51,8 +52,9 @@ public class BoardVO {
 		this.content = content;
 	}
 
-	//detail전부다
-	public BoardVO(int bno, String title, String writer, String content, String regdate, String moddate) {
+	//detail : 전부다
+	public BoardVO(int bno, String title, String writer,
+			String content, String regdate, String moddate, String image_file) {
 		super();
 		this.bno = bno;
 		this.title = title;
@@ -60,6 +62,15 @@ public class BoardVO {
 		this.content = content;
 		this.regdate = regdate;
 		this.moddate = moddate;
+		this.image_File = image_file; //이미지 추가 230919
+	}
+
+	public String getImage_File() {
+		return image_File;
+	}
+
+	public void setImage_File(String image_File) {
+		this.image_File = image_File;
 	}
 
 	public int getBno() {
@@ -121,10 +132,8 @@ public class BoardVO {
 	@Override
 	public String toString() {
 		return "BoardVO [bno=" + bno + ", title=" + title + ", writer=" + writer + ", content=" + content + ", regdate="
-				+ regdate + ", moddate=" + moddate + ", readcount=" + readcount + "]";
+				+ regdate + ", moddate=" + moddate + ", readcount=" + readcount + ", image_File=" + image_File + "]";
 	}
-	
-
 	
 	
 }

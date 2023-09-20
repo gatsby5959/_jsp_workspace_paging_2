@@ -46,15 +46,20 @@
 			<th>조회수</th>
 		</tr>
 		<!-- 컨트롤러의 request.setAttribute("list", list); -->
-		<c:forEach items="${list}" var="varbvo">
+		<c:forEach items="${list}" var="bvo"> <%--이거 이름 그냥 bvo로 함.. 선생님과 맞춤 비!부이!오!--%>
 			<tr>
 <%-- 				<td><a href="/brd/detail?bno=${varbvo.bno}">${varbvo.bno}</a></td> --%>
 <%-- 				<td><a href="/brd/detail?bno=${varbvo.bno}">${varbvo.title}</a></td> --%>
-				<td><a href="/brd/count?bno=${varbvo.bno}">${varbvo.bno}</a></td>
-				<td><a href="/brd/count?bno=${varbvo.bno}">${varbvo.title}</a></td>
-				<td>${varbvo.writer}</td>
-				<td>${varbvo.regdate}</td>
-				<td>${varbvo.readcount}</td>
+				<td><a href="/brd/count?bno=${bvo.bno}">${bvo.bno}</a></td>
+				<td>
+				<c:if test="${bvo.image_File ne '' && bvo.image_File ne null}">
+					<img src="/_fileUpload/_th_${bvo.image_File}"><%--여기까지 썸내일포함이미지? --%>
+				</c:if>
+				<a href="/brd/count?bno=${bvo.bno}">${bvo.title}</a>
+				</td>
+				<td>${bvo.writer}</td>
+				<td>${bvo.regdate}</td>
+				<td>${bvo.readcount}</td>
 			</tr>
 		</c:forEach>
 	</table>

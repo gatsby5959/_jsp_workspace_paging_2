@@ -31,4 +31,6 @@
     <fullyQualifiedTypeName name="org.json.simple.parser.JSONParser"/>
     <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="handler.FileHandler"/>
 </qualifiedTypeNameHistroy>

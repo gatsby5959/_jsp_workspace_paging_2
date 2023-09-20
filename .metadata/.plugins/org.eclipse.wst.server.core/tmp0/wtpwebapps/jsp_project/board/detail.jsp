@@ -10,7 +10,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </head>
 <body>
-	<h1>여긴 디테일 페이지입니다.</h1>
+<h1>Board Detail Page</h1>
+<c:if test="${bvo.image_File ne '' && bvo.image_File ne null}">
+<div>
+<img src="/_fileUpload/${bvo.image_File}" alt="No Image!!">	
+</div>
+</c:if>	
 	<table border=1 class="table table-dark">
 		<tr>
 			<th>BNO</th>
@@ -36,9 +41,12 @@
 			<th>MODDATE</th>
 			<td>${bvo.moddate}</td>
 		</tr>
-	</table>
+</table>
+	
+<c:if test="${ses.id eq bvo.writer}"> <%--아이디 맞으면 보이게~ --%>
 	<a href="/brd/modify?bno=${bvo.bno}"><button class="btn btn-outline-success">수정버튼</button></a>
 	<a href="/brd/remove?bno=${bvo.bno}"><button class="btn btn-outline-secondary">삭제버튼</button></a>
+</c:if>
 	<a href="/brd/pageList"><button type="button">list</button> </a>
 	<br>
 	
