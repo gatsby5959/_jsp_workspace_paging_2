@@ -66,17 +66,17 @@
 	
 	<!-- 페이지네이션 표시구역 -->
 	<div>
-		<!-- prev(이전페이지) -->
-		<c:if test="${ph.prev}">
-			<a href="/brd/pageList?pageNo=${ph.startPage-1}&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">◁|</a>
+		<!-- prev(이전페이지)  ◁ | -->
+		<c:if test="${ph.prev}">        <!-- 바로 앞페이지로 감 -->
+			<a href="/brd/pageList?pageNo=${ph.startPage-1}&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">◁ |</a>
 		</c:if>
 		
 		<c:forEach begin="${ph.startPage}" end ="${ph.endPage}" var="i">
 			<a href="/brd/pageList?pageNo=${i}&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">${i}</a>
 		</c:forEach>
 		
-		<c:if test = "${ph.next}">
-		<a href="/brd/pageList?pageNo=${ph.endPage+1}&qty=${ph.pgvo.qty}&type${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">|▷</a>
+		<c:if test = "${ph.next}">  <!-- 바로 다음페이지로 감  | ▷ -->
+		<a href="/brd/pageList?pageNo=${ph.endPage+1}&qty=${ph.pgvo.qty}&type${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">| ▷</a>
 		</c:if>		
 	</div>
 	<a href="/index.jsp"><button type="button" class="btn btn-outline-primary">index</button> </a>

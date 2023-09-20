@@ -23,4 +23,6 @@ public interface BoardService {
 
 	int hitcount(int bno); //
 
+	String getFileName(int bno);
+
 }

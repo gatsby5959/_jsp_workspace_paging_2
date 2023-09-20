@@ -19,4 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delAll" parameterType="int">
 	 DELETE FROM comment WHERE bno = #{bno}
 	</delete>
+	<select id = "cnt" parameterType="int" resultType="int">
+		select count(cno) from comment where bno = #{bno};
+	</select>
 </mapper>

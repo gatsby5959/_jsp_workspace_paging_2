@@ -9,11 +9,14 @@
 </head>
 <body>
 <h1>Index Page</h1>
+
+<c:if test="${ses.id eq null }">
 <form action="/mem/login" method="post">
 	ID : <input type="text" name="id">
 	PWD : <input type="text" name="pwd">
 	<button type="submit">LOGIN</button>
 </form>
+</c:if>
 
 <br>
 <hr>

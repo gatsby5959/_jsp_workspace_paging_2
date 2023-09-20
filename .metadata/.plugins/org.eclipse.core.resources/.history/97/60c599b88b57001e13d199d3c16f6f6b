@@ -1,0 +1,85 @@
+package service;
+
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import dao.BoardDAO;
+import dao.BoardDAOImpl;
+import domain.BoardVO;
+import domain.PagingVO;
+
+public class BoardServiceImpl implements BoardService {
+
+	//로그 객체 선언
+	private static final Logger log = LoggerFactory.getLogger(BoardServiceImpl.class);
+	//DAO객체 생성
+	private BoardDAO bdao; //interface
+	
+	public BoardServiceImpl() {
+		bdao = new BoardDAOImpl(); //dao -> class
+	}
+	
+	@Override
+	public int add(BoardVO bvo) {
+		log.info("service add check 2");
+		log.info("bvo는 "+bvo.toString());
+		return bdao.insert(bvo);
+	}
+
+	@Override
+	public int getTotalCount(PagingVO pgvo) {
+		log.info("getTotalCount 2");
+		return bdao.getTotalCount(pgvo);
+	}
+
+	@Override
+	public List<BoardVO> getPageList(PagingVO pgvo) {
+		log.info("getPageList 2");
+		return bdao.getPageList(pgvo);
+	}
+
+	@Override
+	public BoardVO detailview(int bno) {
+		log.info("디테일의 서비스 임플");
+		return bdao.selectOne(bno); // 어쩃든 1개만 받아오면 one을함 one에 많이 들은건 다른 문제
+	}
+
+	@Override
+	public BoardVO getDetailForModi(int bno) {
+		log.info("getDetailForModi 서비스임플");
+		return  bdao.selectOne(bno); // 이래뵈도 전부 가져옴 1개 로우의 모든 정보를 다 가져옴 (위에 거랑 같음) 
+	}
+
+	@Override
+	public int modifyForEdit(BoardVO bvo) {
+		log.info("modifyForEdit 서비스임플");
+		return bdao.update(bvo);
+	}
+
+	@Override
+	public int remove(int bno) {
+		CommentServiceImpl csv = new CommentServiceImpl(); //걍 생성~
+		log.info("서비스임플 안의   remove(int bno)2");
+		int cnt = csv.commentCount(bno); //230920 2연속 삭제시 디비 트랜젠션 지랄나서 추가함 
+		if(cnt>0) {
+			int isOk = csv.deleteAll(bno); 
+		}
+		 //댓글 미리 지우기 추가 csv임... 코맨트 관련 서비스 쪽임
+		return bdao.delete(bno); // 이건 bdao임
+	}
+
+	@Override
+	public int hitcount(int bno) {
+		log.info("hitcount(int bno)");
+		return bdao.hitcount(bno);
+	}
+
+	@Override
+	public String getFileName(int bno) {
+		
+		return bdao.getFileName(bno);
+	}
+
+}

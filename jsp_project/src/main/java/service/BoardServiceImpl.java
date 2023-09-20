@@ -60,9 +60,13 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int remove(int bno) {
-		log.info("서비스임플 안의   remove(int bno)");
 		CommentServiceImpl csv = new CommentServiceImpl(); //걍 생성~
-		csv.deleteAll(bno); //댓글 미리 지우기 추가 csv임... 코맨트 관련 서비스 쪽임
+		log.info("서비스임플 안의   remove(int bno)2");
+		int cnt = csv.commentCount(bno); //230920 2연속 삭제시 디비 트랜젠션 지랄나서 추가
+		if(cnt>0) {
+			int isOk = csv.deleteAll(bno); 
+		}
+		 //댓글 미리 지우기 추가 csv임... 코맨트 관련 서비스 쪽임
 		return bdao.delete(bno); // 이건 bdao임
 	}
 
@@ -70,6 +74,12 @@ public class BoardServiceImpl implements BoardService {
 	public int hitcount(int bno) {
 		log.info("hitcount(int bno)");
 		return bdao.hitcount(bno);
+	}
+
+	@Override
+	public String getFileName(int bno) {
+		
+		return bdao.getFileName(bno);
 	}
 
 }

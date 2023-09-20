@@ -20,6 +20,8 @@ public interface BoardDAO {
 	int delete(int bno);
 
 	int hitcount(int bno);
+
+	String getFileName(int bno);
 	
 
 }

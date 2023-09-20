@@ -87,5 +87,11 @@ public class BoardDAOImpl implements BoardDAO {
 		}
 		return isOk;
 	}
+
+	@Override
+	public String getFileName(int bno) {
+		// TODO Auto-generated method stub
+		return sql.selectOne(NS+"fileName", bno);
+	}
  
 }

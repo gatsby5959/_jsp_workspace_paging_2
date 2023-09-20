@@ -6,7 +6,7 @@ document.getElementById('cmtAddBtn').addEventListener('click',()=>{
         alert('댓글을 입력해주세요.');
         return false;
     }else{
-        let cmtData = {
+        let cmtData = { //키벨류 형식의 오브젝트
             bno: bnoVal,
             writer: document.getElementById('cmtWriter').value,
             content: cmtText
@@ -21,6 +21,7 @@ document.getElementById('cmtAddBtn').addEventListener('click',()=>{
                 alert("댓글 등록 실패~!!");
             }
             printCommentList(cmtData.bno);
+
         })
     }
 })
@@ -29,16 +30,17 @@ document.getElementById('cmtAddBtn').addEventListener('click',()=>{
 async function postCommentToServer(cmtData){ //비동기 async에이싱크
     try{
         //const url = "/cmt/post/"+bno;
-        const url = "/cmt/post";
+        const url = "/cmt/post"; //전송을 위한 정보는 config 필요
         const config = {
             method:'post',
             headers:{
                 'Content-Type':'application/json; charset=utf-8'
             },
-            body: JSON.stringify(cmtData)
+            body: JSON.stringify(cmtData) //스트링형식 으로 만듬 서버게 받을수 있게...
         };
         const resp = await fetch(url, config); //await기다렷다 받아줘~
         const result = await resp.text(); //0 또는 1 (isOk)  결과는 바로 옴 비동기는 보낸곳?으로 다시 옴
+		
         return result;
     }catch(error){
         console.log(error);
@@ -149,7 +151,7 @@ async function updateCommentFromServer(cnoVal, cmtWriter, cmtText){
 			body:JSON.stringify({cno:cnoVal, writer:cmtWriter, content:cmtText})
 		}	
 		const resp = await fetch(url,config);
-		const result = await resp.text();
+		const result = await resp.text(); // 0 1 등으로 받음
 		return result;
 	}
 	catch(error){
@@ -159,7 +161,7 @@ async function updateCommentFromServer(cnoVal, cmtWriter, cmtText){
 
 
 
-//서버에 댓글 리스트를 달라고 요청    //서버에 댓글 리스트를 달라고 요청
+//서버에 댓글 리스트를 달라고 요청    //서버에 댓글 리스트를 달라고 요청 
 async function getCommentListFromServer(bno){
     try {
         const resp = await fetch('/cmt/list/'+bno);  //    /cmt/list/151
@@ -177,7 +179,7 @@ function printCommentList(bno){
             spreadCommentList(result);
         }else{
             let div = document.getElementById('accordionExample');
-            div.innerHTML = `comment가 없습니다. 댓글이 없습니다.`;
+            div.innerHTML = `comment가 없습니다!댓글이 없습니다!`;
         }
     })
 }

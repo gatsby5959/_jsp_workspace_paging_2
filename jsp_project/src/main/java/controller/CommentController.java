@@ -109,7 +109,9 @@ public class CommentController extends HttpServlet {
 				log.info(">>>> comment > List > " + list );
 				//json 현태로 변환 => 화면에 전송
 				JSONObject[] jsonObjArr = new JSONObject[list.size()];
-				
+				//'[{...},{...},{...},{...},{...},{...},{...}]'
+				//0:{bno: 471, cno: 30, regdate: '2023-09-20 19:32:03', writer: '1234', content: '111'}
+				//1:{bno: 471, cno: 31, regdate: '2023-09-20 19:32:19', writer: '1234', content: '123'}
 				JSONArray jsonList = new JSONArray();
 				for(int i =0; i<list.size(); i++) {
 					jsonObjArr[i] = new JSONObject(); // key:value

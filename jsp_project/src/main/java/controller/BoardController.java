@@ -105,6 +105,7 @@ public class BoardController extends HttpServlet {
 		case "insert":
 			try {
 				//파일을 업로드 할 물리적인 경로 설정(업로드 할때 설정)
+				// D:\전경환\_jsp_workspace_paging\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\jsp_project\_fileUpload\
 				savePath = getServletContext().getRealPath("/_fileUpload"); //상대경로 가져오기
 				File fileDir = new File(savePath);
 				log.info("파일저장위치(savePath) : " + savePath);
@@ -126,7 +127,7 @@ public class BoardController extends HttpServlet {
 				for(FileItem item : itemList) {
 					switch(item.getFieldName()) {
 					case "title":
-						bvo.setTitle(item.getString("utf-8")); //인코딩 형식을 담아서 변환
+						bvo.setTitle(item.getString("utf-8")); //인코딩 형식을 담아서 변환(한글때문에..)
 						break;
 					case "writer":
 						bvo.setWriter(item.getString("utf-8"));
@@ -307,16 +308,17 @@ public class BoardController extends HttpServlet {
 							
 							log.info("new_fileName"+fileName);
 							
-							//실제 저장될 파일 이름
+							//실제 저장될 파일 이름  시스템 현재 시간_파일이름.jpg
 							fileName = System.currentTimeMillis()+"_"+fileName;
 							
+							//파일 객체 생성 : D:~
 							File uploadFilePath = new File(fileDir+File.separator+fileName);
 							//저장
 							try {
 								item.write(uploadFilePath);
 								bvo.setImage_File(fileName);
 								
-								//썸내일 자업
+								//썸내일 작업 : 트레픽 과다 사용 방지
 								Thumbnails.of(uploadFilePath)
 								.size(60, 60)
 								.toFile(new File(fileDir+File.separator+"_th_"+fileName));
@@ -358,16 +360,22 @@ public class BoardController extends HttpServlet {
 			}
 			break;
 		
+			//관련 사진 부분
+//			D:\전경환\_jsp_workspace_paging\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\jsp_project\_fileUpload
 		case "remove" :
 			try {
 				log.info("리무브 들어옴");
 
 				int bno = Integer.parseInt(request.getParameter("bno"));
-//				
-//				int commentisOk = csv.remove2(bno);
-//				log.info(   commentisOk>0? "OK" : "Fail"   );
-				
-				int isOk = bsv.remove(bno);
+				//삭제할 bno의 image_file Name을 불러오기
+				String fileName = bsv.getFileName(bno);  //파일 이름 불러오기 이 다음 path설정해야함...
+				//savePath 생성
+				savePath = getServletContext().getRealPath("/_fileUpload");
+				//파일 핸들러에서 삭제 요청
+				FileHandler filehandler = new FileHandler();
+				isOk = filehandler.deleteFile(fileName, savePath); // 삭제해줄꺼임  인트 리턴해줄꺼임
+				log.info(   isOk>0? "file remove Ok" : "Fail"   );
+				isOk = bsv.remove(bno);
 				log.info(   isOk>0? "OK" : "Fail"   );
 				destPage="pageList";
 			} catch (Exception e) {

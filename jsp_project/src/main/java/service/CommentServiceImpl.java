@@ -49,7 +49,12 @@ public class CommentServiceImpl implements CommentService {
 //	}
 
 	public int deleteAll(int bno) {
+		log.info("CommentServiceImpl deleteAll입니당");
 		return cdao.deleteAll(bno);
-		
+	}
+
+	public int commentCount(int bno) {
+		// BoardServiceImple에서 보내온 댓글 개수 메서드
+		return cdao.commentCount(bno);
 	}
 }

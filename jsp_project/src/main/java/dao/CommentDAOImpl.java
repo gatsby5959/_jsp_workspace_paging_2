@@ -61,7 +61,13 @@ public class CommentDAOImpl implements CommentDAO {
 	@Override
 	public int deleteAll(int bno) {
 		isOk = sql.delete(NS+"delAll",bno);
-		if(isOk>0) sql.commit();
+		if(isOk>0){sql.commit();};
 		return isOk;
+	}
+
+	@Override
+	public int commentCount(int bno) {
+		
+		return sql.selectOne(NS+"cnt", bno);
 	}
 }

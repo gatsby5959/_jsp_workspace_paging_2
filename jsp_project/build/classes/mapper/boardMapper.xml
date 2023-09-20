@@ -35,6 +35,10 @@
  where bno = #{bno}
  </update>
  
+ <select id="fileName" parameterType="int" resultType="string">
+ select image_File From board where bno = #{bno}
+ </select>
+ 
  <delete id="del" parameterType="int">
  DELETE FROM board WHERE bno = #{bno};
  </delete>
@@ -50,12 +54,12 @@
  
  <sql id ="search">
  	<if test="type != null">
- 		<trim prefix=" where ( " suffix =" ) " prefixOverrides="OR">
+ 		<trim prefix=" where ( " suffix =" ) " prefixOverrides="OR"> <!-- trim은 필요없으면 안들어감? --> <!-- OR에 맨 앞으면 걍 지움 -->
  			<foreach collection = "typeToArray" item="type">
  				<trim prefix="OR">
  					<choose>
  						<when test="type=='t'.toString()">
- 						title like concat('%',#{keyword},'%')
+ 						title like concat('%',#{keyword},'%') <!-- pgvo????아마 알리아스인듯 난 별칭은 안함-->
  						</when>
  						<when test="type=='c'.toString()">
  						content like concat('%',#{keyword},'%')

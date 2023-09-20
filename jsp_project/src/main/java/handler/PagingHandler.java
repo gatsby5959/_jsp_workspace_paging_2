@@ -36,7 +36,7 @@ public class PagingHandler {
 			this.endPage = this.realEndPage;
 		}
 		
-		this.prev = this.startPage > 1;
+		this.prev = this.startPage > 1; //존재여부 스타트페이지는 1 11 21 
 		this.next = this.endPage < this.realEndPage;
 		
 	}//생성자 끝  public PagingHandler(PagingVO pgvo, int totalCount)
