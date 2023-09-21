@@ -179,7 +179,7 @@ function printCommentList(bno){
             spreadCommentList(result);
         }else{
             let div = document.getElementById('accordionExample');
-            div.innerHTML = `comment가 없습니다!댓글이 없습니다1`;
+            div.innerHTML = `comment가 없습니다!댓글이 없습니다!`;
         }
     })
 }
